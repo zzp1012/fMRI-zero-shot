@@ -13,18 +13,9 @@ Due to submodules, you should recursively clone the project.
 
 ## Requirements
 
-1. Make sure GPU is avaible and `CUDA>=11.0` has been installed on your computer. You can check it with
+1. If you use `anaconda3` or `miniconda`, you can run following instructions to download the required packages in python. 
     ```bash
-        nvidia-smi
-    ```
-2. Simply create an virtural environment with `python>=3.8` and run `pip install -r requirements.txt` to download the required packages. If you use `anaconda3` or `miniconda`, you can run following instructions to download the required packages in python. 
-    ```bash
-        conda create -y -n dann python=3.8
-        conda activate fmri
-        pip install pip --upgrade
-        pip install -r requirements.txt
-        conda activate fmri
-        conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+        conda create -f environments.yml
     ```
 
 ## Contributing
