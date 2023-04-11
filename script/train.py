@@ -3,6 +3,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../s
 # cwd change to current file's dir
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 import argparse
+import pickle
 import numpy as np
 
 # import internal libs
@@ -103,14 +104,17 @@ def main():
 
     ## test the classifier part
     logger.info("#######test the classifier part.")
+    pred_y_means = {}
     for word, pred_y in pred_features.items():
         # predict the label
         test_acc = ModelUtils.score(classifier, pred_y, [word] * pred_y.shape[0])
         logger.info(f"word: {word}; test_acc: {test_acc}")
-
         # save the pred_features
-        path = os.path.join(args.save_path, f"word{word}_pred_y.npy")
-        np.save(path, pred_y.mean(axis=0))
+        pred_y_means[word] = pred_y.mean(axis=0)
+    
+    # save the pred_features using pickle
+    with open(os.path.join(args.save_path, "pred_y_means.pkl"), "wb") as f:
+        pickle.dump(pred_y_means, f)
 
 if __name__ == "__main__":
     main()
