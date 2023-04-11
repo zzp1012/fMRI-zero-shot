@@ -31,7 +31,11 @@ class fMRIDataUtils:
         with open(os.path.join(root, f"word2features.pkl"), "rb") as f:
             word2features = pickle.load(f)
         
-        print(word2features.keys())
+        # # normalize the word2features and word2inputs
+        # for key, feature in word2features.items():
+        #     word2features[key] = feature / np.linalg.norm(feature)
+        #     for i in range(len(word2inputs[key])):
+        #         word2inputs[key][i] = word2inputs[key][i] / np.linalg.norm(word2inputs[key][i])
       
         return word2inputs, word2features
     
@@ -113,7 +117,7 @@ class fMRIDataUtils:
         X, y = [], []
         for key, feature in features.items():
             # normalize the feature
-            X.append(feature / np.linalg.norm(feature))
+            X.append(feature)
             y.append(key)
 
         X = np.array(X)
