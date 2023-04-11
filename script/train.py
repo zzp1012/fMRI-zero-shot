@@ -107,7 +107,10 @@ def main():
         # predict the label
         test_acc = ModelUtils.score(classifier, pred_y, [word] * pred_y.shape[0])
         logger.info(f"word: {word}; test_acc: {test_acc}")
-    
+
+        # save the pred_features
+        path = os.path.join(args.save_path, f"word{word}_pred_y.npy")
+        np.save(path, pred_y.mean(axis=0))
 
 if __name__ == "__main__":
     main()
