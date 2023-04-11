@@ -36,7 +36,7 @@ def plot_pred_y_means(save_path: str,
         title=None,
         xlabel="Verbs", 
         ylabel="Frequency",
-        figsize=(15, 5)
+        figsize=(10, 6)
     )
     
     print("plot the pred_y_means done.")
